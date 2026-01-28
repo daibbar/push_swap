@@ -6,6 +6,7 @@ brief overview
 **Instructions**
 section containing any relevant information about compilation,
 installation, and/or execution.
+
 **Resources**
  section listing classic references related to the topic (documentation, articles, tutorials, etc.)
  
