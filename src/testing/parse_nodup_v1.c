@@ -68,7 +68,7 @@ long	custom_atoi(const char **nptr)
 	sign = 1;
 	*nptr = skip_spc_check_sign(*nptr, &sign);
 	nbr = 0;
-	if (!is_digit(**nptr) && **nptr != 0)
+	if (!ft_isdigit(**nptr) && **nptr != 0)
 		return ((long)INT_MAX + 1);
 	while ((**nptr >= '0' && **nptr <= '9'))
 	{
@@ -166,10 +166,25 @@ int parse_check_av(s_node **head, int ac, char **av, gc_node **gh)
 	return (1);
 }
 
+void   swap(s_node **head)
+{
+    s_node *temp;
+    s_node *temp1;
 
+    if (!(*head) || !((*head)->next))
+        return ;
+
+    temp = *head;
+    *head = (*head)->next;
+    temp1 = (*head)->next;
+    (*head)->next = temp;
+    (*head)->next->next = temp1;
+    return ;
+}
 
 int main(int ac, char **av)
 {
+    s_node *temp;
 	s_node* head = NULL;
 	gc_node* gh = NULL;
 	if (ac < 2)
@@ -179,11 +194,21 @@ int main(int ac, char **av)
 		free_gc(gh);
 		return (write(2, "Error\n", 6));
 	}
+    temp = head;
     while (head)
     {
 		printf("|_ %d _| -> ", head->data);
         head = head->next;
     }
 	printf("NULL\n");
+    head = temp;
+    swap(&head);
+    while (head)
+    {
+		printf("|_ %d _| -> ", head->data);
+        head = head->next;
+    }
+	printf("NULL\n");
+
 	free_gc(gh);
 }
