@@ -55,8 +55,8 @@ s_node *index_stack(s_node *stack, gc_node **gh)
     
     size = l_size(stack);
     arr_copy = (int *)malloc(sizeof(int) * size);
-    
-    if (!arr_copy)
+    *gh = save((void*)arr_copy, gh);
+    if (!(*gh) || !arr_copy)
         return NULL;
     temp = stack;
     i = 0;
