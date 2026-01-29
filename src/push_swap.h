@@ -6,11 +6,15 @@
 # include <limits.h>
 # include <stdio.h>
 
+
+
 typedef struct s_node{
     struct s_node *next;
     //struct s_node *prevs;
+    int index;
     int data;
 } s_node;
+
 
 typedef struct gc_node{
     struct gc_node* next;

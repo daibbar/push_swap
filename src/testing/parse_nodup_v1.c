@@ -182,6 +182,105 @@ void   swap(s_node **head)
     return ;
 }
 
+void    rotate(s_node **stack)
+{
+    s_node *temp;
+    s_node *temp1;
+    
+    if (!(*stack))
+        return ;
+    temp = *stack;
+    *stack = (*stack)->next;
+    temp1 = *stack;
+    while ((*stack)->next)
+        *stack = (*stack)->next;
+    (*stack)->next = temp;
+    (*stack)->next->next = NULL;
+    *stack = temp1;
+}
+void    reverse_rotate(s_node **stack)
+{
+    s_node *temp ;
+    s_node *temp1;
+
+    if (!(*stack) || !((*stack)->next))
+        return ;
+    temp = *stack;
+    while((*stack)->next->next)
+        *stack = (*stack)->next;
+    temp1 = (*stack)->next;
+    (*stack)->next = NULL;
+    *stack = temp1;
+    (*stack)->next = temp;
+}
+
+int l_size(s_node *stack)
+{
+    int size;
+    int *array_copy;
+    s_node *temp;
+
+    // calculate the lenght of the stack
+    temp = stack;
+    size = 0;
+    while(temp)
+    {
+        temp = temp->next;
+        size++;
+    }
+    return (size);
+}
+void ft_insertion_sort(int *arr_copy, int size)
+{
+    int temp;
+    int i;
+    int j;
+
+    if (!arr_copy || (size <= 1))
+        return ;
+    i = 1;
+    while (i < size)
+    {
+        temp = arr_copy[i]; 
+        j = i - 1;
+        while (arr_copy[j] > temp && j != -1)
+        {
+            arr_copy[j + 1] = arr_copy[j];
+            j--; 
+        }
+        arr_copy[j + 1] = temp;
+        i++;
+    }
+}
+s_node *index_stack(s_node *stack, gc_node **gh)
+{
+    int *arr_copy;
+    int i;
+    s_node *temp;
+    int size;
+
+    if (!stack)
+        return NULL;
+    
+    size = l_size(stack);
+    arr_copy = (int *)malloc(sizeof(int) * size);
+    if (!arr_copy)
+        return NULL;
+    temp = stack;
+    i = 0;
+    while(temp)
+    {
+        arr_copy[i++] = temp->data;
+        temp = temp->next;
+    }
+    ft_insertion_sort(arr_copy, size);
+    for (i = 0; i < size; i++)
+    {
+        printf("%d", arr_copy[i]);
+    }
+    return (stack)
+}
+
 int main(int ac, char **av)
 {
     s_node *temp;
@@ -202,13 +301,15 @@ int main(int ac, char **av)
     }
 	printf("NULL\n");
     head = temp;
-    swap(&head);
-    while (head)
-    {
-		printf("|_ %d _| -> ", head->data);
-        head = head->next;
-    }
-	printf("NULL\n");
+    printf("the size of the stack is : %d", l_size(head));
+    index_stack(head, &gh);
+    // reverse_rotate(&head);
+    // while (head)
+    // {
+	// 	printf("|_ %d _| -> ", head->data);
+    //     head = head->next;
+    // }
+	// printf("NULL\n");
 
 	free_gc(gh);
 }

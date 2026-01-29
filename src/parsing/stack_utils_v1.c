@@ -30,6 +30,19 @@ int nbr_exist_in_stack(s_node *head, int nbr)
     return (0);
 }
 
+gc_node *save_ptr(void *ptr, gc_node **gh)
+{
+    gc_node *stack;
+
+    stack = *gh; 
+    *gh = malloc(sizeof(gc_node));
+    if (!(*gh))
+        return NULL;
+    (*gh)->next = stack; 
+    (*gh)->ptr = ptr; 
+    return (*gh);
+}
+
 static s_node    *alloc_save_s_node(size_t alloc_size, gc_node **gh)
 {
     s_node *res;
@@ -39,13 +52,15 @@ static s_node    *alloc_save_s_node(size_t alloc_size, gc_node **gh)
     if (!res)
         return NULL;
 
-    
-    stack = *gh; 
-    *gh = malloc(sizeof(gc_node));
+    // stack = *gh; 
+    // *gh = malloc(sizeof(gc_node));
+    // if (!(*gh))
+    //     return NULL;
+    // (*gh)->next = stack; 
+    // (*gh)->ptr = res; 
+    *gh = save_ptr((void*)res, gh);
     if (!(*gh))
         return NULL;
-    (*gh)->next = stack; 
-    (*gh)->ptr = res; 
     return res;
 }
 s_node *add_end(s_node *head, int number, gc_node **gh) 

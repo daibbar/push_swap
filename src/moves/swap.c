@@ -37,3 +37,48 @@ void    push(s_node **a, s_node *b)
     return ;
 }
 
+void    rotate(s_node **stack)
+{
+    s_node *temp;
+    s_node *temp1;
+
+    if (!(*stack) || !((*stack)->next))
+        return ;
+    temp = *stack;
+    temp1 = (*stack)->next;
+    while ((*stack)->next)
+        *stack = (*stack)->next;
+    (*stack)->next = temp;
+    (*stack)->next->next = NULL;
+    *stack = temp1;
+}
+
+void rr(s_node **stack_a, s_node **stack_b)
+{
+    rotate(stack_a);
+    rotate(stack_b);
+}
+
+
+void    reverse_rotate(s_node **stack)
+{
+    s_node *temp ;
+    s_node *temp1;
+
+    if (!(*stack) || !((*stack)->next))
+        return ;
+    temp = *stack;
+    while((*stack)->next->next)
+        *stack = (*stack)->next;
+    temp1 = (*stack)->next;
+    (*stack)->next = NULL;
+    *stack = temp1;
+    (*stack)->next = temp;
+}
+
+void rrr(s_node **stack_a, s_node **stack_b)
+{
+    reverse_rotate(stack_a);
+    reverse_rotate(stack_b);
+}
+
