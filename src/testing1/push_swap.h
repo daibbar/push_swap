@@ -38,7 +38,8 @@ void    rotate(s_node **stack);
 void rr(s_node **stack_to, s_node **stack_from);
 void    reverse_rotate(s_node **stack);
 void rrr(s_node **stack_to, s_node **stack_from);
-
+int ft_sqrt(int nbr);
+void K_distrub(s_node **stack_a, s_node **stack_b);
 
 
 #endif

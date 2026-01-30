@@ -6,6 +6,7 @@ static char	*skip_space(const char *str)
 		str++;
 	return ((char*)str);
 }
+
 static char	*skip_spc_check_sign(const char *nptr, int *sign)
 {
 	nptr = skip_space(nptr);

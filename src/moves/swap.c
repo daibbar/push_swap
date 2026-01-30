@@ -25,16 +25,27 @@ void    ss(s_node **head1, s_node **head2)
 }
 
 
-void    push(s_node **a, s_node *b)
+void    push(s_node **stack, s_node *element)
 {
     s_node *temp;
 
-    if (!(b))
+    if (!element)
         return ;
-    temp = *a;
-    *a = b;
-    b->next = temp;
-    return ;
+    temp = *stack;
+    *stack = element;
+    (*stack)->next = temp;
+}
+
+
+void p(s_node **stack_to, s_node **stack_from)
+{
+    s_node *temp;
+
+    if (!(*stack_from))
+        return ;
+    temp = *stack_from;
+    push(stack_to, temp);
+    *stack_from = (*stack_from)->next;
 }
 
 void    rotate(s_node **stack)
@@ -53,10 +64,10 @@ void    rotate(s_node **stack)
     *stack = temp1;
 }
 
-void rr(s_node **stack_a, s_node **stack_b)
+void rr(s_node **stack_to, s_node **stack_from)
 {
-    rotate(stack_a);
-    rotate(stack_b);
+    rotate(stack_to);
+    rotate(stack_from);
 }
 
 
@@ -76,9 +87,9 @@ void    reverse_rotate(s_node **stack)
     (*stack)->next = temp;
 }
 
-void rrr(s_node **stack_a, s_node **stack_b)
+void rrr(s_node **stack_to, s_node **stack_from)
 {
-    reverse_rotate(stack_a);
-    reverse_rotate(stack_b);
+    reverse_rotate(stack_to);
+    reverse_rotate(stack_from);
 }
 

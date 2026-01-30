@@ -18,45 +18,45 @@ static s_node    *alloc_save_s_node(size_t alloc_size, gc_node **gh)
     return res;
 }
 
-// s_node *add_end(s_node *head, int number, gc_node **gh) 
-// {
-//     s_node* stack;
-
-//     stack = head;
-//     if (!stack)
-//     {    
-//         stack = alloc_save_s_node(sizeof(s_node), gh);
-//         if(!stack)
-//             return NULL;
-//         head = stack;
-//         stack->next = NULL;
-//         stack->data = number;
-//     }
-//     else
-//     {
-//         while (stack->next)
-//             stack = stack->next;
-//         stack->next = alloc_save_s_node(sizeof(s_node), gh);
-//         if (!(stack->next))
-//             return NULL;
-//         stack->next->next = NULL;
-//         stack->next->data = number;
-//     }
-//     return (head);
-// }
-
-s_node *add_end(s_node *head, int number, gc_node **gh)
+s_node *add_end(s_node *head, int number, gc_node **gh) 
 {
-    s_node *node;
+    s_node* stack;
 
-    node = alloc_save_s_node(sizeof(s_node), gh);
-    if (!node)
-        return NULL;
-    node->data = number;
-    push(&head, node);
-    rotate(&head);
+    stack = head;
+    if (!stack)
+    {    
+        stack = alloc_save_s_node(sizeof(s_node), gh);
+        if(!stack)
+            return NULL;
+        head = stack;
+        stack->next = NULL;
+        stack->data = number;
+    }
+    else
+    {
+        while (stack->next)
+            stack = stack->next;
+        stack->next = alloc_save_s_node(sizeof(s_node), gh);
+        if (!(stack->next))
+            return NULL;
+        stack->next->next = NULL;
+        stack->next->data = number;
+    }
     return (head);
 }
+
+// s_node *add_end(s_node *head, int number, gc_node **gh)
+// {
+//     s_node *node;
+
+//     node = alloc_save_s_node(sizeof(s_node), gh);
+//     if (!node)
+//         return NULL;
+//     node->data = number;
+//     push(&head, node);
+//     rotate(&head);
+//     return (head);
+// }
 
 void free_gc(gc_node *gh)
 {

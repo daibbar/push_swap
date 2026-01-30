@@ -44,8 +44,8 @@ void p(s_node **stack_to, s_node **stack_from)
     if (!(*stack_from))
         return ;
     temp = *stack_from;
-    push(stack_to, temp);
     *stack_from = (*stack_from)->next;
+    push(stack_to, temp);
 }
 
 void    rotate(s_node **stack)
