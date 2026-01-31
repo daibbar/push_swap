@@ -27,15 +27,6 @@ int main(int ac, char **av)
         stack_a = stack_a->next;
     }
     printf("NULL\n");
-    stack_a = temp;
-    K_distrub(&stack_a, &stack_b);
-    while (stack_b)
-    {
-		//printf("|_ %d _ %d| -> ", stack_a->data, stack_a->index);
-		printf("%d ", stack_b->data);
-        stack_b = stack_b->next;
-    }
-    printf("NULL\n");
 
 
 	free_gc(gh);
