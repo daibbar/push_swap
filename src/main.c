@@ -1,28 +1,35 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mdaibbar <mdaibbar@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 01:13:12 by mdaibbar          #+#    #+#             */
-/*   Updated: 2026/01/25 01:13:15 by mdaibbar         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-# include <stdio.h>
 # include "push_swap.h"
 
 
 int main(int ac, char **av)
 {
-	s_node* head = NULL;
+    s_node *temp;
+	s_node* stack_a = NULL;
 	gc_node* gh = NULL;
+    s_node* stack_b = NULL;
 	if (ac < 2)
 		return (0);
-	if (av_parser(head, ac, av, &gh) == 0)
+	if (parse_check_av(&stack_a, ac, av, &gh) == 0)
 	{
 		free_gc(gh);
 		return (write(2, "Error\n", 6));
 	}
-	free(gh);
+    indexer(stack_a);
+    K_distrub(&stack_a, &stack_b);
+    push_back(&stack_a, &stack_b, l_size(stack_b));
+    //push_back1(&stack_a, &stack_b);
+
+    //p(&stack_a, &stack_b);
+    temp = stack_a;
+    while (temp)
+    {
+        printf("%d ", temp->data);
+		//printf("%d,", stack_a->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+   // printf("(%d,%d) ", stack_a->data, stack_a->index);
+    
+
+	free_gc(gh);
 }

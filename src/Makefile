@@ -1,5 +1,5 @@
 NAME = push_swap ## check the name
-SRC = stack_utils.c av_parser.c indexer.c moves.c main.c sorting.c ## add the sources
+SRC = stack_utils.c av_parser.c  moves.c main.c sorting.c ## add the sources
 OBJ = $(SRC:.c=.o)
 CLFLAGS = -Wall -Wextra -Werror
 CC = cc

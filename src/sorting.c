@@ -1,25 +1,27 @@
 # include "push_swap.h"
 // # include <stdio.h>
 
-
-void index_stack(s_node *list)
+void indexer(s_node *list)
 {
     s_node *temp;
     s_node *temp1;
     int rank;
 
     temp = list;
+    temp->index = 0;
     while (temp)
     {
         rank = 0;
         temp1 = temp->next;
         while (temp1)
         {
-            if (temp > temp1)
+            if (temp1->data > temp->data)
+                temp1->index += 1;
+            if (temp->data > temp1->data)
                 rank++;
             temp1 = temp1->next;
         }
-        temp->index = rank;
+        temp->index += rank;
         temp = temp->next;
     }
 }
@@ -71,7 +73,6 @@ void K_distrub(s_node **stack_a, s_node **stack_b)
                 printf("rb\n");
             }
             i++;
-            K++;
         }
     }
 }
@@ -85,19 +86,21 @@ void push_back(s_node **stack_a, s_node **stack_b, int size)
     int i;
 
     temp = *stack_b;
-    i = 1;
+    i = 0;
     while(temp)
     {
         if(temp->index == size - 1 && i < size / 2)
         {
-            while (i != 1)
+            while (i != 0)
             {
                 rotate(stack_b);
+                printf("rb\n");
                 i--;
             }
             p(stack_a, stack_b);
-            temp = *stack_b;
+            printf("pa\n");
             size--;
+            temp = *stack_b;
             //break ;
             //printf("%d", size);
         }
@@ -107,11 +110,14 @@ void push_back(s_node **stack_a, s_node **stack_b, int size)
             while (i != size)
             {
                 reverse_rotate(stack_b);
+                printf("rrb\n");
                 i++;
             }
             p(stack_a, stack_b);
-            temp = *stack_b;
+            printf("pa\n");
             size--;
+            temp = *stack_b;
+            i = 0;
         }
         else
         {
