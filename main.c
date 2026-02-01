@@ -16,15 +16,16 @@ int main(int ac, char **av)
 	}
     indexer(stack_a);
     k_distrub(&stack_a, &stack_b);
-    push_back(&stack_a, &stack_b, l_size(stack_b));
-    //push_back1(&stack_a, &stack_b);
+    int i = 0;
+    //push_back(&stack_a, &stack_b, l_size(stack_b), i);
+    push_back1(&stack_a, &stack_b);
 
     //p(&stack_a, &stack_b);
     temp = stack_a;
     while (temp)
     {
-        printf("%d ", temp->data);
-		//printf("%d,", stack_a->data);
+        //printf("(%d, %d)", temp->data, temp->index);
+		printf("%d,", temp->data);
         temp = temp->next;
     }
     printf("NULL\n");

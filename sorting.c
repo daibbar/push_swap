@@ -26,26 +26,26 @@ void indexer(s_node *list)
     }
 }
 
-int ft_sqrt(int nbr)
-{
-    int i;
+// int ft_sqrt(int nbr)
+// {
+//     int i;
 
-    if (nbr == 1)
-        return (1);
-    if (nbr <= 0)
-        return (0);
+//     if (nbr == 1)
+//         return (1);
+//     if (nbr <= 0)
+//         return (0);
  
-    i = 2;
-    while (i <= (nbr / 2))
-    {
-        if (i * i > nbr)
-            return (i - 1);
-        if (i * i == nbr)
-            return (i);
-        i++;
-    }
-    return (0);
-}
+//     i = 2;
+//     while (i <= (nbr / 2))
+//     {
+//         if (i * i > nbr)
+//             return (i - 1);
+//         if (i * i == nbr)
+//             return (i);
+//         i++;
+//     }
+//     return (-1);
+// }
 
 
 void	k_distrub(s_node **stack_a, s_node **stack_b)
@@ -55,7 +55,7 @@ void	k_distrub(s_node **stack_a, s_node **stack_b)
 	int	k;
 
 	size = l_size(*stack_a);
-	k = (3 * ft_sqrt(size)) / 2;
+	k = (size / 20) + 7;
 	i = 0;
 	while (*stack_a)
 	{
@@ -77,53 +77,46 @@ void	k_distrub(s_node **stack_a, s_node **stack_b)
 	}
 }
 
+static s_node	*maprot(void (*rot)(s_node **), s_node **sb, s_node **sa, int *i)
+{
+    while ((*i) != 0)
+     {
+        rot(sb);
+        if (rot == rotate)
+            write(1, "rb\n", 3);
+        else if (rot == reverse_rotate)
+            write(1, "rrb\n", 4);
+        (*i)--;
+    }
+    p(sa, sb);
+    write(1, "pa\n", 3);    
+    return *sb;
+}
 
-
-void push_back(s_node **stack_a, s_node **stack_b, int size)
+void push_back(s_node **stack_a, s_node **stack_b, int size, int i)
 {
     s_node *temp;
-    s_node *temp1;
-    int i;
-
+    int j;
+    
     temp = *stack_b;
-    i = 0;
     while(temp)
     {
         if(temp->index == size - 1 && i < size / 2)
-        {
-            while (i != 0)
-            {
-                rotate(stack_b);
-                write(1, "rb\n", 3);
-                i--;
-            }
-            p(stack_a, stack_b);
-            write(1, "pa\n", 3);
+        {    
+            temp = maprot(rotate, stack_b, stack_a, &i);
             size--;
-            temp = *stack_b;
-            //break ;
-            //printf("%d", size);
         }
-        
-        else if(temp->index == size - 1 && i >= size / 2)
+        else if (temp->index == size - 1 && i >= size / 2)
         {
-            while (i != size)
-            {
-                reverse_rotate(stack_b);
-                write(1, "rrb\n", 4);
-                i++;
-            }
-            p(stack_a, stack_b);
-            write(1, "pa\n", 3);
-            size--;
-            temp = *stack_b;
+            j = size - i;
+            temp = maprot(reverse_rotate, stack_b, stack_a, &j);
             i = 0;
+            size--;
         }
         else
         {
-            temp = temp->next;
             i++;
+            temp = temp->next; 
         }
-
     }
 }
