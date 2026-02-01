@@ -26,28 +26,6 @@ void indexer(s_node *list)
     }
 }
 
-// int ft_sqrt(int nbr)
-// {
-//     int i;
-
-//     if (nbr == 1)
-//         return (1);
-//     if (nbr <= 0)
-//         return (0);
- 
-//     i = 2;
-//     while (i <= (nbr / 2))
-//     {
-//         if (i * i > nbr)
-//             return (i - 1);
-//         if (i * i == nbr)
-//             return (i);
-//         i++;
-//     }
-//     return (-1);
-// }
-
-
 void	k_distrub(s_node **stack_a, s_node **stack_b)
 {
 	int	size;

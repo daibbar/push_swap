@@ -13,7 +13,7 @@ void   swap(s_node **head)
     *head = (*head)->next;
     temp1 = (*head)->next;
     (*head)->next = temp;
-    temp = temp1;
+    (*head)->next->next = temp1;
     return ;
 }
 
