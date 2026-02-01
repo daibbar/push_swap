@@ -15,7 +15,7 @@ int main(int ac, char **av)
 		return (write(2, "Error\n", 6));
 	}
     indexer(stack_a);
-    K_distrub(&stack_a, &stack_b);
+    k_distrub(&stack_a, &stack_b);
     push_back(&stack_a, &stack_b, l_size(stack_b));
     //push_back1(&stack_a, &stack_b);
 

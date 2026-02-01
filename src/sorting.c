@@ -47,34 +47,34 @@ int ft_sqrt(int nbr)
     return (0);
 }
 
-void K_distrub(s_node **stack_a, s_node **stack_b)
-{
-    int size;
-    int i;
-    int K;
 
-    size = l_size(*stack_a);
-    K = (3 * ft_sqrt(size)) / 2;
-    i  = 0;
-    while (*stack_a)
-    {
-        if ((*stack_a)->index > i + K)
-        {
-            rotate(stack_a);
-            printf("ra\n");
-        }
-        else if (((*stack_a)->index) <= (i + K))
-        {
-            p(stack_b, stack_a);
-            printf("pb\n");
-            if ((*stack_b)->index <= i)
-            {
-                rotate(stack_b);
-                printf("rb\n");
-            }
-            i++;
-        }
-    }
+void	k_distrub(s_node **stack_a, s_node **stack_b)
+{
+	int	size;
+	int	i;
+	int	k;
+
+	size = l_size(*stack_a);
+	k = (3 * ft_sqrt(size)) / 2;
+	i = 0;
+	while (*stack_a)
+	{
+		if ((*stack_a)->index > i + k)
+		{
+			rotate(stack_a);
+			write(1, "ra\n", 3);
+		}
+		else if ((*stack_a)->index <= (i + k))
+		{
+			p(stack_b, stack_a);
+			write(1, "pb\n", 3);
+			if ((*stack_b)->index <= i++)
+			{
+				rotate(stack_b);
+				write(1, "rb\n", 3);
+			}
+		}
+	}
 }
 
 
@@ -94,11 +94,11 @@ void push_back(s_node **stack_a, s_node **stack_b, int size)
             while (i != 0)
             {
                 rotate(stack_b);
-                printf("rb\n");
+                write(1, "rb\n", 3);
                 i--;
             }
             p(stack_a, stack_b);
-            printf("pa\n");
+            write(1, "pa\n", 3);
             size--;
             temp = *stack_b;
             //break ;
@@ -110,11 +110,11 @@ void push_back(s_node **stack_a, s_node **stack_b, int size)
             while (i != size)
             {
                 reverse_rotate(stack_b);
-                printf("rrb\n");
+                write(1, "rrb\n", 4);
                 i++;
             }
             p(stack_a, stack_b);
-            printf("pa\n");
+            write(1, "pa\n", 3);
             size--;
             temp = *stack_b;
             i = 0;
