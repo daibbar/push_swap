@@ -1,36 +1,49 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/02 17:49:57 by mdaibbar          #+#    #+#             */
+/*   Updated: 2026/02/02 18:29:29 by mdaibbar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
 // # include <stdio.h>
 
-void indexer(s_node *list)
+void	indexer(t_stack *list)
 {
-    s_node *temp;
-    s_node *temp1;
-    int rank;
+	t_stack	*temp;
+	t_stack	*temp1;
+	int		rank;
 
-    temp = list;
-    while(temp)
-    {
-        temp->index = 0;
-        temp = temp->next;
-    }
-    while (list)
-    {
-        rank = 0;
-        temp1 = list->next;
-        while (temp1)
-        {
-            if (temp1->data > list->data)
-                temp1->index += 1;
-            if (list->data > temp1->data)
-                rank++;
-            temp1 = temp1->next;
-        }
-        list->index += rank;
-        list = list->next;
-    }
+	temp = list;
+	while (temp)
+	{
+		temp->index = 0;
+		temp = temp->next;
+	}
+	while (list)
+	{
+		rank = 0;
+		temp1 = list->next;
+		while (temp1)
+		{
+			if (temp1->data > list->data)
+				temp1->index += 1;
+			if (list->data > temp1->data)
+				rank++;
+			temp1 = temp1->next;
+		}
+		list->index += rank;
+		list = list->next;
+	}
 }
 
-void	k_distrub(s_node **stack_a, s_node **stack_b)
+void	k_distrub(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size;
 	int	i;
@@ -59,46 +72,46 @@ void	k_distrub(s_node **stack_a, s_node **stack_b)
 	}
 }
 
-static s_node	*maprot(void (*rot)(s_node **), s_node **sb, s_node **sa, int *i)
+static t_stack	*mapr(void (*r)(t_stack **), t_stack **sb, t_stack **sa, int *i)
 {
-    while ((*i) != 0)
-     {
-        rot(sb);
-        if (rot == rotate)
-            write(1, "rb\n", 3);
-        else if (rot == reverse_rotate)
-            write(1, "rrb\n", 4);
-        (*i)--;
-    }
-    p(sa, sb);
-    write(1, "pa\n", 3);    
-    return *sb;
+	while ((*i) != 0)
+	{
+		r(sb);
+		if (r == rotate)
+			write(1, "rb\n", 3);
+		else if (r == reverse_rotate)
+			write(1, "rrb\n", 4);
+		(*i)--;
+	}
+	p(sa, sb);
+	write(1, "pa\n", 3);
+	return (*sb);
 }
 
-void push_back(s_node **stack_a, s_node **stack_b, int size, int i)
+void	push_back(t_stack **stack_a, t_stack **stack_b, int size, int i)
 {
-    s_node *temp;
-    int j;
-    
-    temp = *stack_b;
-    while(temp)
-    {
-        if(temp->index == size - 1 && i < size / 2)
-        {    
-            temp = maprot(rotate, stack_b, stack_a, &i);
-            size--;
-        }
-        else if (temp->index == size - 1 && i >= size / 2)
-        {
-            j = size - i;
-            temp = maprot(reverse_rotate, stack_b, stack_a, &j);
-            i = 0;
-            size--;
-        }
-        else
-        {
-            i++;
-            temp = temp->next; 
-        }
-    }
+	t_stack	*temp;
+	int		j;
+
+	temp = *stack_b;
+	while (temp)
+	{
+		if (temp->index == size - 1 && i < size / 2)
+		{
+			temp = mapr(rotate, stack_b, stack_a, &i);
+			size--;
+		}
+		else if (temp->index == size - 1 && i >= size / 2)
+		{
+			j = size - i;
+			temp = mapr(reverse_rotate, stack_b, stack_a, &j);
+			i = 0;
+			size--;
+		}
+		else
+		{
+			i++;
+			temp = temp->next;
+		}
+	}
 }

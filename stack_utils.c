@@ -1,107 +1,90 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/02 17:50:09 by mdaibbar          #+#    #+#             */
+/*   Updated: 2026/02/02 18:44:59 by mdaibbar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static s_node    *alloc_save_s_node(size_t alloc_size, gc_node **gh)
+#include "push_swap.h"
+
+static t_stack	*alloc_save_t_stack(size_t alloc_size, t_gar **gh)
 {
-    s_node *res;
-    gc_node *stack;
+	t_stack	*res;
+	t_gar	*stack;
 
-    res = (s_node*)malloc(alloc_size);
-    if (!res)
-        return NULL;
-
-    stack = *gh; 
-    *gh = malloc(sizeof(gc_node));
-    if (!(*gh))
-        return NULL;
-    (*gh)->next = stack; 
-    (*gh)->ptr = res; 
-    return res;
+	res = (t_stack *)malloc(alloc_size);
+	if (!res)
+		return (NULL);
+	stack = *gh;
+	*gh = malloc(sizeof(t_gar));
+	if (!(*gh))
+		return (NULL);
+	(*gh)->next = stack;
+	(*gh)->ptr = res;
+	return (res);
 }
 
-// s_node *add_end(s_node *head, int number, gc_node **gh) 
-// {
-//     s_node* stack;
-
-//     stack = head;
-//     if (!stack)
-//     {    
-//         stack = alloc_save_s_node(sizeof(s_node), gh);
-//         if(!stack)
-//             return NULL;
-//         head = stack;
-//         stack->next = NULL;
-//         stack->data = number;
-//     }
-//     else
-//     {
-//         while (stack->next)
-//             stack = stack->next;
-//         stack->next = alloc_save_s_node(sizeof(s_node), gh);
-//         if (!(stack->next))
-//             return NULL;
-//         stack->next->next = NULL;
-//         stack->next->data = number;
-//     }
-//     return (head);
-// }
-
-s_node *add_end(s_node *head, int number, gc_node **gh)
+t_stack	*add_end(t_stack *head, int number, t_gar **gh)
 {
-    s_node *node;
+	t_stack	*node;
 
-    node = alloc_save_s_node(sizeof(s_node), gh);
-    if (!node)
-        return NULL;
-    node->data = number;
-    push(&head, node);
-    rotate(&head);
-    return (head);
+	node = alloc_save_t_stack(sizeof(t_stack), gh);
+	if (!node)
+		return (NULL);
+	node->data = number;
+	push(&head, node);
+	rotate(&head);
+	return (head);
 }
 
-int free_gc(gc_node *gh)
+int	free_gc(t_gar *gh)
 {
-    gc_node *temp;
+	t_gar	*temp;
 
-    temp = gh;
-    if (!temp)
-        return (0);
-    while(temp)
-    {
-        free(temp->ptr);
-        temp = temp->next;
-    }
-    while(gh)
-    {
-        temp = gh;
-        gh = gh->next;
-        free(temp);
-    }
-    return (0);
+	temp = gh;
+	if (!temp)
+		return (0);
+	while (temp)
+	{
+		free(temp->ptr);
+		temp = temp->next;
+	}
+	while (gh)
+	{
+		temp = gh;
+		gh = gh->next;
+		free(temp);
+	}
+	return (0);
 }
 
-int nbr_exist_in_stack(s_node *head, int nbr)
+int	nbr_exist_in_stack(t_stack *head, int nbr)
 {
-    while (head)
-    {
-        if (head->data == nbr)
-            return (1);
-        head = head->next;
-    }
-    return (0);
+	while (head)
+	{
+		if (head->data == nbr)
+			return (1);
+		head = head->next;
+	}
+	return (0);
 }
 
-int l_size(s_node *list)
+int	l_size(t_stack *list)
 {
-    int size;
-    int *list_copy;
-    s_node *temp;
+	int		size;
+	t_stack	*temp;
 
-    temp = list;
-    size = 0;
-    while(temp)
-    {
-        temp = temp->next;
-        size++;
-    }
-    return (size);
+	temp = list;
+	size = 0;
+	while (temp)
+	{
+		temp = temp->next;
+		size++;
+	}
+	return (size);
 }

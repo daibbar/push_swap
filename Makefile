@@ -1,7 +1,8 @@
 NAME = push_swap ## check the name
-SRC = stack_utils.c av_parser.c  moves.c main.c sorting.c small_sort.c ## add the sources
+SRC = main.c stack_utils.c av_parser.c  mv_push_swap.c mv_rotations.c sorting.c small_sort.c \
+		 ## add the sources
 OBJ = $(SRC:.c=.o)
-CLFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 CC = cc
 RM = rm -f
 
