@@ -6,19 +6,15 @@
 /*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 17:49:57 by mdaibbar          #+#    #+#             */
-/*   Updated: 2026/02/02 18:29:29 by mdaibbar         ###   ########.fr       */
+/*   Updated: 2026/02/02 21:41:06 by mdaibbar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// # include <stdio.h>
-
 void	indexer(t_stack *list)
 {
 	t_stack	*temp;
-	t_stack	*temp1;
-	int		rank;
 
 	temp = list;
 	while (temp)
@@ -28,17 +24,15 @@ void	indexer(t_stack *list)
 	}
 	while (list)
 	{
-		rank = 0;
-		temp1 = list->next;
-		while (temp1)
+		temp = list->next;
+		while (temp)
 		{
-			if (temp1->data > list->data)
-				temp1->index += 1;
-			if (list->data > temp1->data)
-				rank++;
-			temp1 = temp1->next;
+			if (temp->data > list->data)
+				temp->index += 1;
+			else if (temp->data < list->data)
+				list->index += 1;
+			temp = temp->next;
 		}
-		list->index += rank;
 		list = list->next;
 	}
 }
@@ -114,4 +108,30 @@ void	push_back(t_stack **stack_a, t_stack **stack_b, int size, int i)
 			temp = temp->next;
 		}
 	}
+}
+
+
+void	push_back1(t_stack **stack_a, t_stack **stack_b, int size)
+{
+	int	i;
+
+	if (!(*stack_b))
+		return ;
+	i = get_pos(stack_b, size - 1);
+	while (i != size && i > (size / 2))
+	{
+		reverse_rotate(stack_b);
+		write(1, "rrb\n", 4);
+		i++;
+	}
+	while (i != 0 && i <= (size / 2))
+	{
+		rotate(stack_b);
+		write(1, "rb\n", 3);
+		i--;
+	}
+	p(stack_a, stack_b);
+	write(1, "pa\n", 3);
+	indexer(*stack_a);
+	push_back1(stack_a, stack_b, size - 1);
 }

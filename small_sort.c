@@ -6,7 +6,7 @@
 /*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 17:49:53 by mdaibbar          #+#    #+#             */
-/*   Updated: 2026/02/02 18:29:54 by mdaibbar         ###   ########.fr       */
+/*   Updated: 2026/02/02 21:22:59 by mdaibbar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_pos(t_stack **stack_a, int index)
 
 	temp = *stack_a;
 	i = 0;
-	while (temp->next && temp->index != index)
+	while (temp && temp->index != index)
 	{
 		temp = temp->next;
 		i++;
