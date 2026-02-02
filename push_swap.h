@@ -6,7 +6,7 @@
 /*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 17:49:28 by mdaibbar          #+#    #+#             */
-/*   Updated: 2026/02/02 22:03:52 by mdaibbar         ###   ########.fr       */
+/*   Updated: 2026/02/02 22:18:36 by mdaibbar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void				sort_two(t_stack **stack_a);
 void				sort_three(t_stack **stack_a);
 void				sort_small(t_stack **stack_a, t_stack **stack_b, int size);
 int					get_pos(t_stack **stack_a, int index);
-//void	push_back1(t_stack **stack_a, t_stack **stack_b, int size);
+void	push_back1(t_stack **stack_a, t_stack **stack_b, int size);
 
 #endif
