@@ -1,59 +1,60 @@
 # include "push_swap.h"
 
 
+
+static void decide_sort(s_node **stack_a, s_node **stack_b, int size)
+{
+    int i;
+
+    if (check_sort(*stack_a))
+        return ;
+    else if (size == 2)
+        sort_two(stack_a);
+    else 
+    {
+        indexer(*stack_a);
+        if (size == 3) 
+            sort_three(stack_a);
+        else if (size >= 4 && size <= 15)
+            sort_small(stack_a, stack_b, size);
+        else
+        {
+            i = 0;
+            k_distrub(stack_a, stack_b);
+            push_back(stack_a, stack_b, l_size(*stack_b), i);
+        }
+    }
+    return ;
+}
+
 int main(int ac, char **av)
 {
     s_node *temp;
-	s_node* stack_a = NULL;
-	gc_node* gh = NULL;
-    s_node* stack_b = NULL;
+	s_node* stack_a;
+	gc_node* gh;
+    s_node* stack_b;
 
 
 	if (ac < 2)
 		return (0);
+    stack_a = NULL;
+    stack_b = NULL;
+    gh = NULL;
 	if (parse_check_av(&stack_a, ac, av, &gh) == 0)
 	{
 		free_gc(gh);
 		return (write(2, "Error\n", 6));
 	}
-    if (check_sort(stack_a))
-        return free_gc(gh);
 
-    else if (l_size(stack_a) == 2)
-        swap(&stack_a);
-    else if (l_size(stack_a) == 3)
-    {
-        indexer(stack_a);
-        sort_three(&stack_a);
-    }
-    else if (l_size(stack_a) == 4)
-    {
-        indexer(stack_a);
-        sort_four(&stack_a, &stack_b);
-    }
-    else if (l_size(stack_a) == 5)
-    {
-        indexer(stack_a);
-        sort_five(&stack_a, &stack_b);
-    }
-    else 
-    {
-        indexer(stack_a);
-        k_distrub(&stack_a, &stack_b);
-        int i = 0;
-        push_back(&stack_a, &stack_b, l_size(stack_b), i);
-    }
-    //indexer(stack_a);
-    temp = stack_a;
-    while (temp)
-    {
-        //printf("(%d, %d)", temp->data, temp->index);
-		printf("%d,", temp->data);
-        temp = temp->next;
-    }
-    printf("NULL\n");
+    decide_sort(&stack_a, &stack_b, l_size(stack_a));
+    // temp = stack_a;
+    // while (temp)
+    // {
+    //     //printf("(%d, %d)", temp->data, temp->index);
+	// 	printf("%d,", temp->data);
+    //     temp = temp->next;
+    // }
+    // printf("NULL\n");
    // printf("(%d,%d) ", stack_a->data, stack_a->index);
-    
-
 	free_gc(gh);
 }

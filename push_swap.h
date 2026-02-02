@@ -43,6 +43,7 @@ void    sort_two(s_node **stack_a);
 void    sort_three(s_node **stack_a);
 void    sort_four(s_node **stack_a, s_node **stack_b);
 void    sort_five(s_node **stack_a, s_node **stack_b);
+void    sort_small(s_node **stack_a, s_node **stack_b, int size);
 
 
 
