@@ -6,7 +6,7 @@
 /*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 17:49:57 by mdaibbar          #+#    #+#             */
-/*   Updated: 2026/02/02 22:18:07 by mdaibbar         ###   ########.fr       */
+/*   Updated: 2026/02/02 22:23:28 by mdaibbar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,52 +66,7 @@ void	k_distrub(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-// static t_stack	*mapr(void (*r)(t_stack **), t_stack **sb, t_stack **sa, int *i)
-// {
-// 	while ((*i) != 0)
-// 	{
-// 		r(sb);
-// 		if (r == rotate)
-// 			write(1, "rb\n", 3);
-// 		else if (r == reverse_rotate)
-// 			write(1, "rrb\n", 4);
-// 		(*i)--;
-// 	}
-// 	p(sa, sb);
-// 	write(1, "pa\n", 3);
-// 	return (*sb);
-// }
-
-// void	push_back(t_stack **stack_a, t_stack **stack_b, int size, int i)
-// {
-// 	t_stack	*temp;
-// 	int		j;
-
-// 	temp = *stack_b;
-// 	while (temp)
-// 	{
-// 		if (temp->index == size - 1 && i < size / 2)
-// 		{
-// 			temp = mapr(rotate, stack_b, stack_a, &i);
-// 			size--;
-// 		}
-// 		else if (temp->index == size - 1 && i >= size / 2)
-// 		{
-// 			j = size - i;
-// 			temp = mapr(reverse_rotate, stack_b, stack_a, &j);
-// 			i = 0;
-// 			size--;
-// 		}
-// 		else
-// 		{
-// 			i++;
-// 			temp = temp->next;
-// 		}
-// 	}
-// }
-
-
-void	push_back1(t_stack **stack_a, t_stack **stack_b, int size)
+void	push_back(t_stack **stack_a, t_stack **stack_b, int size)
 {
 	int	i;
 
@@ -133,5 +88,5 @@ void	push_back1(t_stack **stack_a, t_stack **stack_b, int size)
 	p(stack_a, stack_b);
 	write(1, "pa\n", 3);
 	indexer(*stack_a);
-	push_back1(stack_a, stack_b, size - 1);
+	push_back(stack_a, stack_b, size - 1);
 }

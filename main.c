@@ -6,7 +6,7 @@
 /*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 17:49:39 by mdaibbar          #+#    #+#             */
-/*   Updated: 2026/02/02 22:18:21 by mdaibbar         ###   ########.fr       */
+/*   Updated: 2026/02/02 22:22:07 by mdaibbar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	decide_sort(t_stack **stack_a, t_stack **stack_b, int size)
 {
-	int	i;
-
 	if (check_sort(*stack_a))
 		return ;
 	else if (size == 2)
@@ -29,11 +27,8 @@ static void	decide_sort(t_stack **stack_a, t_stack **stack_b, int size)
 			sort_small(stack_a, stack_b, size);
 		else
 		{
-			i = 0;
 			k_distrub(stack_a, stack_b);
-			//push_back(stack_a, stack_b, l_size(*stack_b), i);
-			push_back1(stack_a, stack_b, l_size(*stack_b));
-
+			push_back(stack_a, stack_b, l_size(*stack_b));
 		}
 	}
 	return ;
