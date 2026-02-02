@@ -13,21 +13,20 @@ void indexer(s_node *list)
         temp->index = 0;
         temp = temp->next;
     }
-    temp = list;
-    while (temp)
+    while (list)
     {
         rank = 0;
-        temp1 = temp->next;
+        temp1 = list->next;
         while (temp1)
         {
-            if (temp1->data > temp->data)
+            if (temp1->data > list->data)
                 temp1->index += 1;
-            if (temp->data > temp1->data)
+            if (list->data > temp1->data)
                 rank++;
             temp1 = temp1->next;
         }
-        temp->index += rank;
-        temp = temp->next;
+        list->index += rank;
+        list = list->next;
     }
 }
 

@@ -45,16 +45,5 @@ int main(int ac, char **av)
 		free_gc(gh);
 		return (write(2, "Error\n", 6));
 	}
-
-    decide_sort(&stack_a, &stack_b, l_size(stack_a));
-    // temp = stack_a;
-    // while (temp)
-    // {
-    //     //printf("(%d, %d)", temp->data, temp->index);
-	// 	printf("%d,", temp->data);
-    //     temp = temp->next;
-    // }
-    // printf("NULL\n");
-   // printf("(%d,%d) ", stack_a->data, stack_a->index);
 	free_gc(gh);
 }
