@@ -26,6 +26,16 @@ int main(int ac, char **av)
         indexer(stack_a);
         sort_three(&stack_a);
     }
+    else if (l_size(stack_a) == 4)
+    {
+        indexer(stack_a);
+        sort_four(&stack_a, &stack_b);
+    }
+    else if (l_size(stack_a) == 5)
+    {
+        indexer(stack_a);
+        sort_five(&stack_a, &stack_b);
+    }
     else 
     {
         indexer(stack_a);
@@ -33,6 +43,7 @@ int main(int ac, char **av)
         int i = 0;
         push_back(&stack_a, &stack_b, l_size(stack_b), i);
     }
+    //indexer(stack_a);
     temp = stack_a;
     while (temp)
     {

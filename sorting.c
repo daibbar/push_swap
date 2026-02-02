@@ -8,7 +8,12 @@ void indexer(s_node *list)
     int rank;
 
     temp = list;
-    temp->index = 0;
+    while(temp)
+    {
+        temp->index = 0;
+        temp = temp->next;
+    }
+    temp = list;
     while (temp)
     {
         rank = 0;
