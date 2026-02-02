@@ -6,7 +6,7 @@
 /*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 17:49:57 by mdaibbar          #+#    #+#             */
-/*   Updated: 2026/02/02 21:41:06 by mdaibbar         ###   ########.fr       */
+/*   Updated: 2026/02/02 22:03:39 by mdaibbar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,30 +108,4 @@ void	push_back(t_stack **stack_a, t_stack **stack_b, int size, int i)
 			temp = temp->next;
 		}
 	}
-}
-
-
-void	push_back1(t_stack **stack_a, t_stack **stack_b, int size)
-{
-	int	i;
-
-	if (!(*stack_b))
-		return ;
-	i = get_pos(stack_b, size - 1);
-	while (i != size && i > (size / 2))
-	{
-		reverse_rotate(stack_b);
-		write(1, "rrb\n", 4);
-		i++;
-	}
-	while (i != 0 && i <= (size / 2))
-	{
-		rotate(stack_b);
-		write(1, "rb\n", 3);
-		i--;
-	}
-	p(stack_a, stack_b);
-	write(1, "pa\n", 3);
-	indexer(*stack_a);
-	push_back1(stack_a, stack_b, size - 1);
 }
