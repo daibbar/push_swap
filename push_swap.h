@@ -6,7 +6,7 @@
 /*   By: mdaibbar <mdaibbar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 17:49:28 by mdaibbar          #+#    #+#             */
-/*   Updated: 2026/02/02 22:22:58 by mdaibbar         ###   ########.fr       */
+/*   Updated: 2026/02/03 10:40:13 by mdaibbar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <limits.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
