@@ -42,7 +42,6 @@ static char	*skip_spc_check_sign(const char *nptr, int *sign)
 static long	error_atoi(const char **nptr)
 {
 	int		sign;
-	long	res;
 	long	nbr;
 
 	sign = 1;
@@ -52,7 +51,6 @@ static long	error_atoi(const char **nptr)
 		return ((long)INT_MAX + 1);
 	while ((**nptr >= '0' && **nptr <= '9'))
 	{
-		res = nbr;
 		nbr = nbr * 10 + **nptr - 48;
 		if ((nbr > (long)INT_MAX && sign == 1) || nbr > (long)INT_MAX + 1)
 			return ((long)INT_MAX + 1);
